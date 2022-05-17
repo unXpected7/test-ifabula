@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubah Nama</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .card {
+            width: 100%;
+            max-width: 30rem;
+        }
+    </style>
+</head>
+
+<body ng-app="AppTest" ng-controller="KaryawanCtrl">
+    <div class="d-grid gap-4 my-5">
+        <div class="card mx-auto">
+            <h4 class="card-header">Informasi Karyawan</h4>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th>NAMA</th>
+                        <td>{{data.nama}}</td>
+                    </tr>
+                    <tr>
+                        <th>NIK</th>
+                        <td>{{data.nik}}</td>
+                    </tr>
+                    <tr>
+                        <th>ALAMAT</th>
+                        <td>
+                            <ul>
+                                <li>Jalan: {{data.alamat.jalan}}</li>
+                                <li>Kelurahan: {{data.alamat.kelurahan}}</li>
+                                <li>Kecamatan: {{data.alamat.kecamatan}}</li>
+                                <li>Kota: {{data.alamat.kota}}</li>
+                                <li>Kode POS: {{data.alamat.kodePos}}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="card mx-auto" style="max-width: 30rem;">
+            <h4 class="card-header">Update Data</h4>
+            <form name="FormUpdate" class="card-body d-grid gap-2" ng-submit="update()">
+                <div>
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="nama" required ng-model="formData.nama">
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script>
+        const app = angular.module('AppTest', []);
+        app.controller('KaryawanCtrl', function ($scope, $http) {
+            $scope.data = {};
+            $scope.formData = {};
+            $http.get('/1_karyawan.json', { headers: { 'Content-Type': 'application/json' } })
+                .then(({ data }) => {
+                    $scope.data = data;
+                });
+
+            $scope.update = () => {
+                $scope.data = { ...$scope.data, ...$scope.formData }
+            };
+        });
+    </script>
+</body>
+
+</html>
