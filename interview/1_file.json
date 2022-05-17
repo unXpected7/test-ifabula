@@ -1,0 +1,11 @@
+{
+    "nama": "Andi Surandi",
+    "nik": "123456789",
+    "alamat": {
+        "jalan": "Jl. Raya",
+        "kelurahan": "Sukamaju",
+        "kecamatan": "Sukamundur",
+        "kota": "Sukamajumundur",
+        "kodePos": "12345"
+    }
+}
