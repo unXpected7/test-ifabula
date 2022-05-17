@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashing</title>
+</head>
+
+<body ng-app="AppTest" ng-controller="HashingCtrl">
+    Hasil dalam console.
+
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/crypto-js/core.js"></script>
+    <script src="./node_modules/crypto-js/sha256.js"></script>
+    <script>
+        const app = angular.module('AppTest', []);
+        app.controller('HashingCtrl', function () {
+            const date = '14112021';
+            const nama = 'dian';
+            const text = `${date}${nama}priaifabula`;
+            const hash = CryptoJS.SHA256(text).toString(CryptoJS.enc.Hex);
+            console.log(text, hash.toString());
+        });
+    </script>
+</body>
+
+</html>
