@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .card {
+            width: 100%;
+            max-width: 30rem;
+        }
+    </style>
+</head>
+
+<body ng-app="AppTest" ng-controller="AuthCtrl">
+    <div class="card card-body mx-auto my-5 ">
+        <form name="FormLogin" class="d-grid gap-2" ng-hide="isLogin" ng-submit="login()">
+            <h2>Login</h2>
+            <div>
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" required ng-model="auth.username">
+            </div>
+            <div>
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required ng-model="auth.password">
+                <div class="form-text">username: test, password: 123</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <div class="d-grid gap-2" ng-show="isLogin">
+            <h2>Selamat Datang</h2>
+            <button class="btn btn-primary" ng-click="logout()">Logout</button>
+        </div>
+    </div>
+
+
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script>
+        const app = angular.module('AppTest', []);
+        app.controller('AuthCtrl', function ($scope) {
+            $scope.auth = {};
+            $scope.isLogin = false;
+
+            $scope.login = () => {
+                const { username, password } = $scope.auth;
+                if (username === 'test' && password === '123') {
+                    $scope.isLogin = true;
+                }
+                $scope.auth = {};
+            }
+
+            $scope.logout = () => $scope.isLogin = false;
+        });
+    </script>
+</body>
+
+</html>
