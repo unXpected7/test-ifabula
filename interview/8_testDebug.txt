@@ -1,0 +1,5 @@
+- line 23 kurang koma
+- line 429 kurang kutip
+- line 438 valueAsString tidak ada nilai
+- line 541 index array belum di set
+- line 528 nama attributes seharusnya attribute
