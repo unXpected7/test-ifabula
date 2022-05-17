@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get JSON</title>
+</head>
+
+<body ng-app="AppTest" ng-controller="GetJSONCtrl">
+    Data in console.
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script>
+        const app = angular.module('AppTest', []);
+        app.controller('GetJSONCtrl', function ($http) {
+            $http.get('http://jsonplaceholder.typicode.com/posts', { headers: { 'Content-Type': 'application/json' } })
+                .then((res) => {
+                    console.log(res);
+                });
+        });
+    </script>
+</body>
+
+</html>
